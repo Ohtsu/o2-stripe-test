@@ -1,0 +1,16 @@
+button.intabpage { width: 115px; border-radius: 12px;padding: 5px;margin: 15px 5px 15px 5px;}
+input.intabpage {margin: 5px;}
+textarea.intabpage {margin: 5px;}
+h2.inmain {margin-left: 10px;}
+h3.intabpage {margin: 5px;}
+h4.intabpage {margin: 5px;}
+.footerholder {
+    text-align: center;
+    width: 100%;
+}
+
+.footer {
+    background: none repeat scroll 0 0 ;
+    margin: auto;
+    width: 400px;
+}

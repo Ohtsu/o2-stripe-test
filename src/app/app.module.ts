@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { StripeConsService } from './stripe-cons.service';
+import { StripeAuthService } from './stripe-auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,9 +15,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgbModule.forRoot()
+
   ],
-  providers: [],
+  providers: [StripeConsService,StripeAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

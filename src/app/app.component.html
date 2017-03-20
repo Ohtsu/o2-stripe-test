@@ -1,3 +1,492 @@
-<h1>
-  {{title}}
-</h1>
+
+
+<div class="container" style="background-color:lightyellow">
+  <div class="row">
+    <h2 class="inmain">Customer Side</h2>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><img class="pull-right" src="https://raw.githubusercontent.com/Ohtsu/images/master/icon/discover-card01_h42.png" height="20"></h3>
+          <h3 class="panel-title"><img class="pull-right" src="https://raw.githubusercontent.com/Ohtsu/images/master/icon/amex-card01_h42.png" height="20"></h3>
+          <h3 class="panel-title"><img class="pull-right" src="https://raw.githubusercontent.com/Ohtsu/images/master/icon/visa-card01_h42.png" height="20"></h3>
+          <h3 class="panel-title"><img class="pull-right" src="https://raw.githubusercontent.com/Ohtsu/images/master/icon/master-card01_h42.png" height="20"></h3>
+        </div>
+
+        <div class="panel-body">
+          <form role="form" id="payment-form" (submit)="getClientCardData(number.value, month.value,year.value,cvc.value)" action="post">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label for="cardNumber">CARD NUMBER</label>
+                  <div class="input-group">
+                    <input #number type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number" required autofocus data-stripe="number" />
+                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7 col-md-7">
+                <div class="form-group">
+                  <label for="expMonth">EXPIRATION DATE</label>
+                  <div class="col-xs-6 col-lg-6 pl-ziro">
+                    <input #month type="text" class="form-control" id="expMonth" placeholder="MM" required data-stripe="exp_month" />
+                  </div>
+                  <div class="col-xs-6 col-lg-6 pl-ziro">
+                    <input #year type="text" class="form-control" name="expYear" placeholder="YY" required data-stripe="exp_year" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5 col-md-5 pull-right">
+                <div class="form-group">
+                  <label for="cvCode">CV CODE</label>
+                  <input #cvc type="password" class="form-control" id="cvCode" placeholder="CV" required data-stripe="cvc" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <button class="btn btn-success btn-lg btn-block" type="submit">Register as a customer</button>
+              </div>
+            </div>
+            <div class="row" style="display:none;">
+              <div class="col-xs-12">
+                <p class="payment-errors"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="panel">
+          <div class="row">
+            <div class="col-xs-12">
+                <h4 class="intabpage"> Input </h4>
+                <textarea class="intabpage" [(ngModel)]="localInputParams" id="localInputParams" placeholder="Params (Json Format)            e.g. {'email': 'user07@example.com','description': 'Sample Customer07'}" cols="31" rows="4">
+                </textarea>
+                <h4 class="intabpage"> Output </h4>
+                <textarea class="intabpage" [(ngModel)]="localOutput" id="localOutput" placeholder="Output" cols="31" rows="3">
+                </textarea>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
+
+<div class="container" style="background-color: honeydew">
+  <div class="row">
+    <h2 class="inmain">Administrator Side</h2>
+  </div>
+    <hr>
+  <div class="row">
+    <div>
+      <ngb-tabset>
+
+        <ngb-tab title="Subscription">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createSubscription()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateSubscription()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveSubscription()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_cancelSubscription()" >Cancel</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listSubscriptions()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "subscriptionId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="subscriptionParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="subscriptionOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Charge">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createCharge()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveCharge()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateCharge()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_captureCharge()" >Capture</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listCharges()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "chargeId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="chargeParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="chargeOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Order">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createOrder()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveOrder()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateOrder()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_payOrder()" >Pay</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listOrders()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "orderId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="orderParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="orderOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Account">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createAccount()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveAccount()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateAccount()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_rejectAccount()" >Reject</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_deleteAccount()" >Delete</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listAccounts()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "accountId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="accountParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="accountOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Customer">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createCustomer()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveCustomer()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateCustomer()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_deleteCustomer()" >Delete</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listCustomers()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "customerId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="customerParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="customerOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Token">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createCardToken()" >Create Card </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createBankAccountToken()" >Create Bank Ac </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createPIIToken()" >Create PII </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveToken()" >Retrieve</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "tokenId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="tokenParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="tokenOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Refund">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createRefund()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveRefund()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateRefund()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listRefunds()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "refundId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="refundParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="refundOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Plan">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createPlan()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrievePlan()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updatePlan()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_deletePlan()" >Delete</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listPlans()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "planId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="planParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="planOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Product">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createProduct()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveProduct()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateProduct()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_deleteProduct()" >Delete</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listProducts()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "productId" placeholder="Id" size="31">
+                <textarea class="intabpage" [(ngModel)]="productParam" placeholder="Param (Json Format)" cols="31" rows="8">
+                </textarea>
+                <input class="intabpage" [(ngModel)]= "productDuplicatedParamName" placeholder="Duplicated Name  e.g. attributes[]" size="31">
+                <textarea class="intabpage" [(ngModel)]="productDuplicatedParams" placeholder="Params  e.g. color,size" cols="31" rows="2">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="productOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Sku">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createSku()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveSku()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateSku()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_deleteSku()" >Delete</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listSkus()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "skuId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="skuParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="skuOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Event">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveEvent()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listEvents()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "eventId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="eventParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="eventOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Dispute">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveDispute()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateDispute()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_closeDispute()" >Close</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listDisputes()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "disputeId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="disputeParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="disputeOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+
+        <ngb-tab title="Balance">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveBalance()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveBalanceTransaction()" >Retrieve Trans</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listBalanceHistory()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "balanceId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="balanceParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="balanceOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+        
+        <ngb-tab title="Transfer">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createTransfer()" >Create </button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveTransfer()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_updateTransfer()" >Update</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listTransfers()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage" [(ngModel)]= "transferId" placeholder="Id" size="30">
+                <textarea class="intabpage" [(ngModel)]="transferParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="transferOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+ 
+ 
+        <ngb-tab title="File Uploads">
+          <template ngbTabContent>
+            <div class="row">
+              <div class="col-xs-2">
+                <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveFileUpload()" >Retrieve</button>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_listFileUploads()" >List</button>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Input </h4>
+                <input class="intabpage"  [(ngModel)]= "fileUploadId" placeholder="upload file" size="30">
+                <!--<input type="file" id="btnUpload" style="display:none;"  (change)="onBtnUploadChange($event)" />
+                <button type="button" (click) = "onBtnBrowseClick($event)">Select File</button>-->
+                <textarea class="intabpage" [(ngModel)]="fileUploadParam" placeholder="Param (Json Format)" cols="31" rows="13">
+                </textarea>
+              </div>
+              <div class="col-xs-5">
+                <h4 class="intabpage"> Output </h4>
+                <textarea [(ngModel)]="fileUploadOutput" placeholder="Output (JSON Format)" cols="31" rows="15">
+                </textarea>
+              </div>
+            </div>
+          </template>
+        </ngb-tab>
+ 
+      </ngb-tabset>
+    </div><!--/.col-xs-6.col-lg-4-->
+  </div><!--/row-->
+</div><!--/container-->
+
+<br>
+<div class="footerholder">
+    <div class="footer">
+      <span class="text-center">
+          &copy; 2017 DigiPub Japan.
+      </span>
+      <span class="float-xs-right">
+          Powered by <a href="https://digipub-net.com">DigiPub Japan</a>
+      </span>
+    </div>
+</div>
+
