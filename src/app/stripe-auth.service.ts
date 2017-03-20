@@ -21,7 +21,7 @@ export class StripeAuthService {
 
   public getTestPublicKey(){
     if (this.isLogin && this.getRole() == 'admin'){
-      return "pk_test_xxxxxxxxxxxxxxxxxxxxxxxxx";
+      return "pk_test_xxxxxxxxxxxxxxxxxxxxx";
     }
   }
   
