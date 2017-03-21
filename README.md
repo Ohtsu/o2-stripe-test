@@ -112,6 +112,40 @@ And you will get the page below in your browser by accessing **http://localhost:
   <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/o2-stripe-test-initial01.png" width= "640" >
 
 
+## Test Stripe APIs
+
+### Check your connection
+
+In the first page, click _List_ button in the subscription tab (default). If your keys are valid, you will find the repondd message in the output area.
+
+
+### Test on Customer (Client) side.
+
+In the upper panel, input the date as a customer (these are default data for testing in Stripe).
+
+   - CARD NUMBER		
+   - EXPIRATION DATE
+   - CV CODE
+
+In addition, you need to input the customer date such as _email address_. Input your customer's email in the input area. It needs to be JSON format.
+
+Click "Register as a customer" button.
+
+Then you will find the customer id.
+
+You can also check the new customer in Stripe site.
+
+### List your customers on Admiministrator (Server) side.
+
+Click "Customer" tab in the lower panel.
+
+Click the button "List".
+
+You will find the newly registered customer's id.
+
+
+
+
 ## Version
 
    - o2-stripe-test     : 0.1.1
