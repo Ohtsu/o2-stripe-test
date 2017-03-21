@@ -41,7 +41,7 @@ $ cd mydir
    - Make the clone as follows.
 
 ```bash
-$ https://github.com/Ohtsu/o2-stripe-test.git 
+$ git clone https://github.com/Ohtsu/o2-stripe-test.git 
 ```
 
    - Change into _o2-stripe-test_ and run "npm install".
