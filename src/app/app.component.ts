@@ -1173,7 +1173,7 @@ export class AppComponent {
     this.tokenOutput = await this.tstRetrieveCommon(this._stripe.TOKENS,this.tokenId); 
   }
 
-// Test File Uploads ____
+// __ Test File Uploads ____
 
   async _createFileUpload(){
     this.fileUploadOutput = await this.tstCreateCommon(this._stripe.FILES,this.fileUploadParam); 
@@ -1235,10 +1235,6 @@ export class AppComponent {
   async createCustomerByLocal(params){
     return await this.createCommon(this._stripe.CUSTOMERS,params); 
   }
-
-
-
-
 
 // private functions -----------------------
 
