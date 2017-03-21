@@ -106,16 +106,6 @@ export class AppComponent {
 
 // Client Side functions -----------------------
 
-  localCheckout(token){
-    console.log("local checkout token----",token);
-    let dataObj = {"key": this._stripeTestPublicKey, "locale": "auto", "token": token};
-    let _checkout = StripeCheckout.configure(dataObj);
-    let product = {"name": "T-shirt",
-                    "description": "Test buy sample",
-                    "email": "customer05@example.com",
-                    "amount": "8000"};
-    _checkout.open(product);   
-  }
 
   async serverRegisterCustomer(token){
     if (this.localInputParams == null){
@@ -125,7 +115,7 @@ export class AppComponent {
     try{
       let udata = JSON.parse(this.localInputParams);
       udata["source"]=token;
-      let res = await this.createCustomer(udata);
+      let res = await this.createCustomerByLocal(udata);
       this.localOutput = JSON.stringify(res);
     }
     catch(e){
@@ -144,18 +134,14 @@ export class AppComponent {
   }
 
   getClientCardToken(number, month, year, cvc) {
-    var dataObj = {"number": number, "exp_month": month, "exp_year": year, "cvc": cvc};
+    var cardData = {"number": number, "exp_month": month, "exp_year": year, "cvc": cvc};
 
-    Stripe.card.createToken(dataObj,
+    Stripe.card.createToken(cardData,
       (status, response) => { 
         if (status === 200) {
           console.log("the card response: ", response);
           this.cardToken = response.id;
           this.serverRegisterCustomer(this.cardToken);
-          console.log("the card token: ", response.id);
-          console.log("the card id: ", response.card.id);
-          console.log("the card brand: ", response.card.brand);
-          console.log("the card country: ", response.card.country);
         }
         else {
           console.log("error in getting card data: ", response.error)
@@ -165,18 +151,6 @@ export class AppComponent {
 
   }
 
-    onBtnBrowseClick(event:any){
-         let uploadButton = document.getElementById("btnUpload");
-         uploadButton.click();
-     }
-
-    async onBtnUploadChange(event:any){
-         let targetFile = event.srcElement.files[0];
-         let uploader = document.getElementById("btnUpload");
-         console.log("targetFile------------",targetFile);
-         let res = await this.sendFile(this._stripe.FILES, targetFile,"dispute_evidence");
-         console.log("upload res-----",res);
-     }
 
 
 
@@ -1258,7 +1232,7 @@ export class AppComponent {
 
 // Customer =====================
 
-  async createCustomer(params){
+  async createCustomerByLocal(params){
     return await this.createCommon(this._stripe.CUSTOMERS,params); 
   }
 
