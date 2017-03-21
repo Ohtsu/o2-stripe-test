@@ -17,13 +17,13 @@ export class StripeAuthService {
 
   public getTestSecretKey(){
     if (this.isLogin && this.getRole() == 'admin'){
-      return "sk_test_rMXxjihD48UaKkhkZOZeUu2z";
+      return "sk_test_xxxxxxxxxxxxxxxxxxxxxxxx";
     }
   }
 
   public getTestPublicKey(){
     if (this.isLogin && this.getRole() == 'admin'){
-      return "pk_test_43JRel8PZxr00sCQOUm3I4CY";
+      return "pk_test_xxxxxxxxxxxxxxxxxxxxxxxx";
     }
   }
   

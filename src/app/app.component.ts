@@ -131,12 +131,6 @@ export class AppComponent {
     catch(e){
       this.localOutput = JSON.stringify(e);
     }
-    // let udata = JSON.parse(this.localInputParams);
-    // udata["source"]=token;
-    // console.log(udata);
-    // let res = await this.createCustomer(udata);
-    // this.localOutput = JSON.stringify(res);
-    // console.log(res);
 
   }
 
@@ -147,7 +141,6 @@ export class AppComponent {
 
   getClientCardData(number, month, year, cvc) {
     this.getClientCardToken(number, month, year, cvc);
-    // console.log("cardToken-----------",this.cardToken);
   }
 
   getClientCardToken(number, month, year, cvc) {
@@ -158,7 +151,6 @@ export class AppComponent {
         if (status === 200) {
           console.log("the card response: ", response);
           this.cardToken = response.id;
-          // this.localCheckout(this.cardToken);
           this.serverRegisterCustomer(this.cardToken);
           console.log("the card token: ", response.id);
           console.log("the card id: ", response.card.id);
@@ -184,8 +176,6 @@ export class AppComponent {
          console.log("targetFile------------",targetFile);
          let res = await this.sendFile(this._stripe.FILES, targetFile,"dispute_evidence");
          console.log("upload res-----",res);
-        //  let fbsPath = this.fbsBasePath + targetFile.name;
-        //  this.uploadFile(fbsPath,targetFile);
      }
 
 
@@ -500,37 +490,6 @@ export class AppComponent {
   }
 
 
-  // _createCustomer(){
-  //   let userData = {"email": "customer03@example.com",
-  //                   "description": "user03",
-  //                   "source": "tok_19uvM9GhaJuqPLqdo57PENTu"};
-  //   let res = this.createCustomer(userData);
-  //   console.log(res);
-  // }
-
-  // _retrieveCustomer(){
-  //   let customerId = "cus_AFQHOHD8VwGaEa";
-  //   let res = this.retrieveCustomer(customerId);
-  // }
-
-
-  // _updateCustomer(){
-  //   let customerId = "cus_AFQHOHD8VwGaEa";
-  //   let params = {"description": "This is for user03"};
-  //   let res = this.updateCustomer(customerId,params);
-  //   console.log(res);
-  // }
-
-  // _deleteCustomer(){
-  //   let customerId = "cus_AFQWStffA2j1QR";
-  //   let res = this.deleteCustomer(customerId);
-  // }
-
-  // _listCustomers(){
-  //   let params = {"limit": 5};
-  //   let res = this.listCustomers(params);
-  //   console.log(res);
-  // }
 
 // __ Test Plan ____
 
@@ -1303,289 +1262,12 @@ export class AppComponent {
     return await this.createCommon(this._stripe.CUSTOMERS,params); 
   }
 
-  // createCustomer(params){
-  //   let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-  //   console.log(bodyUrlEncoded);
-
-  //   let url = this._stripe.CUSTOMERS;
-  //   let res = this.sendData(url,bodyUrlEncoded);
-
-  // }
-
-  retrieveCustomer(customerId){
-    let url = this._stripe.CUSTOMERS 
-              + "/" + customerId;
-    // console.log(url);
-    let res = this.getData(url);
-  }
-
-
-  updateCustomer(customerId,params){
-    let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    let url = this._stripe.CUSTOMERS 
-              + "/" + customerId;
-    let res = this.sendData(url,bodyUrlEncoded);
-  }
-
-
-  deleteCustomer(customerId){
-    let url = this._stripe.CUSTOMERS 
-              + "/" + customerId;
-    console.log("url--------",url);              
-    let res = this.deleteData(url);
-  }
-
-  listCustomers(params){
-    let limit = params['limit'];
-    console.log(limit);
-    let url = this._stripe.CUSTOMERS;
-    url = url + "?limit=" + limit;
-    console.log(url);
-    let res = this.getData(url);
-    console.log("res-----------",res);
-
-  }
-
- 
-
-// Charge =====================
-
-  createCharge(params){
-    let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    let url = this._stripe.CHARGES;
-    let res = this.sendData(url,bodyUrlEncoded);
-    return res;
-  }
-
-
-  retrieveCharge(chargeId){
-    let url = this._stripe.CHARGES 
-              + "/" + chargeId;
-    let res = this.getData(url);
-    return res;
-  }
-
-
-  updateCharge(id,params){
-    let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    let url = this._stripe.CHARGES 
-              + "/" + id;
-    let res = this.sendData(url,bodyUrlEncoded);
-    return res;
-  }
-
-  captureCharge(id,params?){
-    let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    let url = this._stripe.CHARGES 
-              + "/" + id + "/capture";
-    let res = this.sendData(url,bodyUrlEncoded);
-    return res;
-  }
-
-
-  listCharges(params){
-    let res = this.listCommon(this._stripe.CHARGES,params);
-    return res;
-  }
-
-
-// Event =====================
-
-  retrieveEvent(id){
-    return this.retrieveCommon(this._stripe.EVENTS,id);
-  }
-
-  listEvents(params){
-    let res = this.listCommon(this._stripe.EVENTS,params);
-    return res;
-  }
-
-
-
-// Subscription =====================
-
-  async createSubscription(params){
-    // let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    // let url = this._stripe.SUBSCRIPTIONS;
-    // let res = await this.sendData(url,bodyUrlEncoded);
-    return await this.createCommon(this._stripe.SUBSCRIPTIONS,params);
-  }
-
-  async listSubscriptions(params){
-    let res = await this.listCommon(this._stripe.SUBSCRIPTIONS,params);
-    return res;
-  }
-
-  async updateSubscription(id,params){
-    return await this.updateCommon(this._stripe.SUBSCRIPTIONS,id,params);
-  }
-
-  async cancelSubscription(id){
-    let url = this._stripe.SUBSCRIPTIONS 
-              + "/" + id;
-    let res = await this.deleteData(url);
-  }
-
-  async retrieveSubscription(id){
-    let url = this._stripe.SUBSCRIPTIONS 
-              + "/" + id;
-    let res = await this.getData(url);
-    return res;
-  }
-
-
-
-// Refund =====================
-
-
-  listRefunds(params){
-    let res = this.listCommon(this._stripe.REFUNDS,params);
-    return res;
-  }
-
-
-  updateRefund(id,params){
-    return this.updateCommon(this._stripe.REFUNDS,id,params);
-  }
-
-
-  retrieveRefund(id){
-    return this.retrieveCommon(this._stripe.REFUNDS,id);
-  }
-
-  createRefund(params){
-    return this.createCommon(this._stripe.REFUNDS,params);
-  }
-
-
-
-// Token =====================
-
-  createBankAccountToken(params){
-    return this.createCommon(this._stripe.TOKENS,params);
-  }
-
-  createPIIToken(params){
-    return this.createCommon(this._stripe.TOKENS,params);
-  }
-
-
-  createCardToken(params){
-    let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    let url = this._stripe.TOKENS;
-    let res = this.sendData(url,bodyUrlEncoded);
-
-  }
-
-
-  retrieveToken(id){
-    return this.retrieveCommon(this._stripe.TOKENS,id);
-  }
-
-
-// Sku =====================
-
-  async createSku(params){
-    return await this.createCommon(this._stripe.SKUS,params);
-  }
-
-  async retrieveSku(id){
-    return await this.retrieveCommon(this._stripe.SKUS,id);
-  }
-
-  async updateSku(id,params){
-    return await this.updateCommon(this._stripe.SKUS,id,params);
-  }
-
-  async deleteSku(id){
-    return await this.deleteCommon(this._stripe.SKUS,id);
-  }
-
-  async listSkus(params){
-    return  await this.listCommon(this._stripe.SKUS,params);
-  }
-
-// Plan =====================
-
-  async createPlan(params){
-    return await this.createCommon(this._stripe.PLANS,params);
-  }
-
-  async retrievePlan(id){
-    return await this.retrieveCommon(this._stripe.PLANS,id);
-  }
-
-  async updatePlan(id,params){
-    return await this.updateCommon(this._stripe.PLANS,id,params);
-  }
-
-  async deletePlan(id){
-    return await this.deleteCommon(this._stripe.PLANS,id);
-  }
-
-  async listPlans(params){
-    return  await this.listCommon(this._stripe.PLANS,params);
-  }
-
-
-// Order ===================
-
-  async createOrder(params){
-    return await this.createCommon(this._stripe.ORDERS,params);
-    // let bodyUrlEncoded = this.getParamsUrlEncoded(params);
-    // let url = this._stripe.ORDERS;
-    // let res = await this.sendData(url,bodyUrlEncoded);
-    // return res;
-  }
-
-
-// Product ===================
-
-  async createProduct(urlEncodedStr){
-    let url = this._stripe.PRODUCTS;
-    let res = await this.sendData(url,urlEncodedStr);
-    return res;
-  }
-
-  async retrieveProduct(id){
-    let url = this._stripe.PRODUCTS 
-              + "/" + id;
-    let res = await this.getData(url);
-    return res;
-  }
-
-  async updateProduct(id,params){
-    return await this.updateCommon(this._stripe.PRODUCTS,id,params);
-  }
-
-  async listProducts(params){
-    return await this.listCommon(this._stripe.PRODUCTS,params);
-  }
-
-  async deleteProduct(id){
-    let url = this._stripe.PRODUCTS 
-              + "/" + id;
-    let res = await this.deleteData(url);
-    return res;
-  }
 
 
 
 
 // private functions -----------------------
 
-  // private getDataO(url: String) {
-  //   let headers = new Headers()
-  //   headers = this.getStripeHeaders();
-  //   let options = new RequestOptions({ headers: headers });
-
-  //   return this._http.get(url,options)
-  //               .map((r:Response) => r.json())
-  //               .subscribe(
-  //                 data => console.log("sub res",data)
-  //                 );
-
-  // }
 
   private addSameNameParams(params: any,paramName: string,attrs:string[]): string{
     let bodyUrlEncoded = this.getParamsUrlEncoded(params);
@@ -1652,7 +1334,6 @@ export class AppComponent {
 
   private extractData(res:Response) {
     console.log("Success------------");
-    // console.log("Response-----------",res);
     return res;
   }
 
@@ -1723,17 +1404,6 @@ export class AppComponent {
     let urlEncoded = encoded.join("&");
     return urlEncoded;
   }
-
-  // private getParamsUrlEncodedByCsv(csv){
-  //   let encoded = [];
-  //   for (var property in params) {
-  //     var encodedKey = encodeURIComponent(property);
-  //     var encodedValue = encodeURIComponent(params[property]);
-  //     encoded.push(encodedKey + "=" + encodedValue);
-  //   }
-  //   let urlEncoded = encoded.join("&");
-  //   return urlEncoded;
-  // }
 
 // Common Functions ----------------------------
 
