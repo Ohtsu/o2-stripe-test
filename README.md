@@ -98,14 +98,14 @@ export class StripeAuthService {
 ```
 
 
-#### Start local server
+### Start server
 Start the local server as follows. 
 
 ```bash
 $ ng serve
 ```
 
-And you will get a (Browse) button  in your browser by accessing **http://localhost:4200**.  
+And you will get the page below in your browser by accessing **http://localhost:4200**.  
 
   - ***First Page*** 
 
