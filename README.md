@@ -51,23 +51,6 @@ $ cd o2-stripe-test
 $ npm install 
 ```
 
-   - run a local server as follows.
-
-```bash
-$ ng serve
-```
-
-   - check the first page in your browser by accessing **http://localhost:4200**.
-
-
-
-```bash
-$ ng serve
-```
-
-  - ***First Page*** 
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/o2-stripe-test-initial01.png" width= "640" >
 
 
 #### Modify stripe-auth.ts
@@ -115,61 +98,11 @@ export class StripeAuthService {
 ```
 
 
-#### Modify app.component.html
-In the same directory, modify **app.component.html** as follows. 
-
-```html
-
-<h1>
-  {{title}}
-</h1>
-<!-- Add Start -->
-
-<o2-stripe-test [fbsBasePath] = "'images/'" [btnSelectText] = "'Browse'"></o2-stripe-test>
-
-<!-- Add End -->
-
-
-```
-
-You can set two parameters (**fbsBasePath** and **btnSelectText**)
-
-   - **fbsBasePath**   : Target path in your Firebase Storage 
-                    (eg. 'images/' --> 'xxxxxxxx.appspot.com/images/')
-   - **btnSelectText** : Title text of the select button
 
 
 
-#### Check your Firebase Storage Rule
-
-This sample program does not have authentication function. Therefore, it is necessary for unauthenticated users can access the target location in Firebase Storage.
-
-So you need to set "Rule" in Firebase Storage.
-
-From Firebase console, open **Storage** page and click **Rules** tab for changing the rule.
-
-In this program, the upload destination is "images /" by default.
-
-Therefore, change the rule as follows. Of course you need to change **your_project_name** to your own project name.
-
-
-```typescript
-
-service firebase.storage {
-  match /b/your_project_name.appspot.com/o {
-    match /images/{allPaths=**} {
-      allow read, write;
-    }
-  }
-}
-
-```
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/FirebaseStorageRule11.png" width= "640" >
-
-
-#### Restart local server
-Restart the local server as follows. 
+#### Start local server
+Start the local server as follows. 
 
 ```bash
 $ ng serve
@@ -177,30 +110,9 @@ $ ng serve
 
 And you will get a (Browse) button  in your browser by accessing **http://localhost:4200**.  
 
-Click Browse Button.  
- 
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/O2UploadToFbs_Initial11.png" width= "640" >
+  - ***First Page*** 
 
- 
-Select your target file for uploading.  
-
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/O2UploadToFbs_SelectFile12.png" width= "640" >
-
-If you want to check the uploading process, open "Console" tab page in your browser.  
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/O2UploadToFbs_UploadComplete11.png" width= "640" >  
-
-Next, open Firebase Storage page in your browser. If you click "File" tab, "images/" directory will be shown.  
-Click "images/" directory name.  
-
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/O2UploadToFbs_UploadFileDir12.png" width= "640" >
-
-Then you can find the file which you uploaded from your local computer.  
-
-  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/firebase/O2UploadToFbs_DisplayUploadedFile11.png" width= "640" >
-
+  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/o2-stripe-test-initial01.png" width= "640" >
 
 
 ## Version
