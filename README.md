@@ -7,7 +7,7 @@
 _o2-stripe-test_ is a tool program for testing Stripe API Service by Angular2.
 
 _Video Explanation_
-<>
+<https://youtu.be/SRT-MtzitC0>
 
 ## Overview 
    - _o2-stripe-test_ is a tool for those who want to check Stripe API Service by using Angular2
