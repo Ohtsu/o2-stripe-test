@@ -61,7 +61,7 @@ Change directory to "src/app".
 $ cd src/app
 ```
 You will find **stripe-auth.ts**.
-Modify this file as follows. In firebaseConfig, paste the data above. 
+Modify this file by using your own Stripe Test Keys. You can get these in <https://dashboard.stripe.com/account/apikeys>. 
 
 ```typescript
 import { Injectable } from '@angular/core';
