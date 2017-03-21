@@ -13,6 +13,8 @@ export class StripeAuthService {
     return 'admin';
   }
 
+  // Set your keys of Stripe --------------------------------------------
+
   public getTestSecretKey(){
     if (this.isLogin && this.getRole() == 'admin'){
       return "sk_test_xxxxxxxxxxxxxxxxxxxxx";
