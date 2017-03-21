@@ -98,9 +98,6 @@ export class StripeAuthService {
 ```
 
 
-
-
-
 #### Start local server
 Start the local server as follows. 
 
@@ -117,13 +114,11 @@ And you will get a (Browse) button  in your browser by accessing **http://localh
 
 ## Version
 
-   - Angular2     : 2.0.0
-   - TypeScript   : 2.0.2
-   - @ng-bootstrap/ng-bootstrap : 2.0-beta,
-
-
-
-
+   - o2-stripe-test     : 0.1.1
+   - Angular2           : 2.4.0
+   - TypeScript         : 2.0.0
+   - @angular/cli      : 1.0.0-rc.1
+   - @ng-bootstrap/ng-bootstrap : 1.0.0-alpha
 
 
 ## Reference
