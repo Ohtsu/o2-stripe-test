@@ -123,9 +123,9 @@ In the first page, click _List_ button in the subscription tab (default). If you
 
 In the upper panel, input the date as a customer (these are default data for testing in Stripe).
 
-   - CARD NUMBER		
-   - EXPIRATION DATE
-   - CV CODE
+   - CARD NUMBER		  4242 4242 4242 4242 
+   - EXPIRATION DATE  10 / 18
+   - CV CODE          100
 
 In addition, you need to input the customer date such as _email address_. Input your customer's email in the input area. It needs to be JSON format.
 
