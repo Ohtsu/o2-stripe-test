@@ -117,7 +117,7 @@ $ ng serve
 
 ### 接続の確認
 
-初期画面において、デフォルトのsubscriptionタブページ内のリストボタンを押してみます。上記で設定したキーが正しければ、ユーザリストが _Output_に表示されます。
+初期画面において、デフォルトのsubscriptionタブページ内のリストボタンを押してみます。上記で設定したキーが正しければ、ユーザリストが _Output_ に表示されます。
 
   <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/check-customer-in-stripe-site_01.png" width= "640" >
 
@@ -130,7 +130,7 @@ $ ng serve
    - EXPIRATION DATE  10 / 18
    - CV CODE          100
 
-さらに、右側のINput欄にemailをJSON形式で指定します。
+さらに、右側の _Input_ 欄にemailをJSON形式で指定します。
 
   <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/input-cardnumber-on-client-side_01.png" width= "640" >
 
