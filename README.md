@@ -140,6 +140,8 @@ Then you will find the customer id.
 
 You can also check the new customer in Stripe site.
 
+  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/made-customer-in-stripe-site_02.png" width= "640" >
+
 ### List your customers on Admiministrator (Server) side.
 
 Click "Customer" tab in the lower panel.
