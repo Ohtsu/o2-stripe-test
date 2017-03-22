@@ -118,6 +118,8 @@ And you will get the page below in your browser by accessing **http://localhost:
 
 In the first page, click _List_ button in the subscription tab (default). If your keys are valid, you will find the repondd message in the output area.
 
+  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/check-customer-in-stripe-site_01.png" width= "640" >
+
 
 ### Test on Customer (Client) side.
 
@@ -128,6 +130,9 @@ In the upper panel, input the date as a customer (these are default data for tes
    - CV CODE          100
 
 In addition, you need to input the customer date such as _email address_. Input your customer's email in the input area. It needs to be JSON format.
+
+  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/input-cardnumber-on-client-side_01.png" width= "640" >
+
 
 Click "Register as a customer" button.
 
