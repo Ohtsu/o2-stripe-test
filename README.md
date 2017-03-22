@@ -148,6 +148,8 @@ Click the button "List".
 
 You will find the newly registered customer's id.
 
+  <img src="https://raw.githubusercontent.com/Ohtsu/images/master/stripe/check-customer-in-stripe-site_01.png" width= "640" >
+
 
 
 
