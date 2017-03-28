@@ -1190,42 +1190,6 @@ export class AppComponent {
   }
 
 
-  // async _createCardToken(){
-  //   let params = {
-  //     "card[number]": 4242424242424242,
-  //     "card[exp_month]": 10,
-  //     "card[exp_year]": 2018,
-  //     "card[cvc]": 100
-  //   };
-  //   let res = await this.createCommon(this._stripe.TOKENS,params);
-  //   console.log(res);
-  // }
-
-  // _createBankAccountToken(){
-  //   let params = {
-  //     "bank_account[country]": "US",
-  //     "bank_account[currency]": "usd",
-  //     "bank_account[account_holder_name]": "Lily Thomas",
-  //     "bank_account[account_holder_type]": "individual",
-  //     "bank_account[routing_number]": "110000000",
-  //     "bank_account[account_number]": "000123456789",
-  //   };
-  //   let res = this.createBankAccountToken(params);
-  //   console.log(res);
-  // }
-
-  // _createPIIToken(){
-  //   let params = {
-  //     "pii[personal_id_number]": "00000000",
-  //   };
-  //   let res = this.createBankAccountToken(params);
-  //   console.log(res);
-  // }
-
-  // _retrieveToken(){
-  //   let id = "tok_19uvM9GhaJuqPLqdo57PENTu";
-  //   let res = this.retrieveToken(id);
-  // }
 
 
 // Public functions ----------------------------------
