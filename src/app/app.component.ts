@@ -240,16 +240,6 @@ export class AppComponent {
     }
   }
 
-    // async _rejectAccount(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   try {
-  //     let res = await this.rejectCommon(this._stripe.ACCOUNTS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
 
 
   async tstListCommon(command,params){
@@ -334,56 +324,8 @@ export class AppComponent {
 
 
 
-  // async _retrieveDispute(){
-  //   let id = "dp_19wOs9GhaJuqPLqdm5ECAF4C";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.DISPUTES,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
+  
 
-  // async _updateDispute(){
-  //   let id = "dp_19wOs9GhaJuqPLqdm5ECAF4C";
-  //   let params = {
-  //                   "evidence[customer_name]": "Lily White",
-  //                   "evidence[product_description]": "Comfortable cotton t-shirt",
-  //                   // "evidence[shipping_documentation]": "file_19w16tGhaJuqPLqdhMEZLLj5",
-  //                 };
-  //   try {
-  //     let res = await this.updateCommon(this._stripe.DISPUTES,id,params);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _closeDispute(){
-  //   let id = "dp_19wOs9GhaJuqPLqdm5ECAF4C";
-  //   try {
-  //     let res = await this.closeCommon(this._stripe.DISPUTES,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-
-  // async _listDisputes(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.DISPUTES,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
 
 
 // __ Test Balance ____
@@ -404,38 +346,6 @@ export class AppComponent {
   }
 
 
-
-  // async _retrieveBalance(){
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.BALANCE);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _retrieveBalanceTransaction(){
-  //   let id = "txn_19wMbYGhaJuqPLqdxvlMz5or";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.BALANCE_HISTORY,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _listBalanceHistory(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.BALANCE_HISTORY,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
 
 // __ Test Customer ____
 
@@ -492,48 +402,6 @@ export class AppComponent {
   }
 
 
-  // async _createPlan(){
-  //   let params = {
-  //     "amount": 3000,
-  //     "interval": 'month',
-  //     "name": 'Silver',
-  //     "currency": 'jpy',
-  //     "id": 'gold-silver'
-  //   };
-  //   let res = await this.createPlan(params);
-  //   console.log(res);
-  // }
-
-  // async _updatePlan(){
-  //   let id = "gold-unlimited";
-  //   let params = {"name": "Ruby performance02"};
-  //   let res = await this.updatePlan(id,params);
-  //   console.log(res);
-  // }
-
-  // async _deletePlan(){
-  //   let id = "gold-silver";
-  //   let res = await this.deletePlan(id);
-  //   console.log(res);
-  // }
-
-  // async _listPlans(){
-  //   let params = {"limit": 5};
-  //   let res = await this.listPlans(params);
-  //   console.log(res);
-  // }
-
-  // async _retrievePlan(){
-  //   let id = "gold-unlimited";
-  //   try {
-  //     let res = await this.retrievePlan(id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
 
 
 // __ Test Charge ____
@@ -564,11 +432,6 @@ export class AppComponent {
   }
 
 
-  // async _listCharges(){
-  //   let params = {"limit": 5};
-  //   let res = await this.listCharges(params);
-  //   console.log(res);
-  // }
 
 
 // __ Test Subscription ____
@@ -627,76 +490,6 @@ export class AppComponent {
   }
 
 
-  // async _createOrder(){
-  //   let params = {
-  //     "items[][type]": "sku",
-  //     "items[][parent]": "sku_AGvaYehC5QHDHK",
-  //     "currency": "jpy",
-  //     "shipping[name]": "Zoey Wilson",
-  //     "shipping[address][line1]": "1234 Main Street",
-  //     "shipping[address][city]": "San Francisco",
-  //     "shipping[address][state]": "CA",
-  //     "shipping[address][country]": "US",
-  //     "shipping[address][postal_code]": "94111",
-  //     "email": "zoey.wilson@example.com",
-  //   };
-
-  //   try {
-  //     let res = await this.createCommon(this._stripe.ORDERS,params);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-  // async _retrieveOrder(){
-  //   let id = "or_19wNkhGhaJuqPLqddCgjwDyw";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.ORDERS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _updateOrder(){
-  //   let id = "or_19wNkhGhaJuqPLqddCgjwDyw";
-  //   let params = {"metadata[order_id]": "006735700"};
-  //   try {
-  //     let res = await this.updateCommon(this._stripe.ORDERS,id,params);
-  //     console.log("test Ok ---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _deleteOrder(){
-  //   let id = "or_19wNkhGhaJuqPLqddCgjwDyw";
-  //   try {
-  //     let res = await this.deleteCommon(this._stripe.ORDERS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _listOrders(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.ORDERS,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
 
 
 
@@ -734,79 +527,6 @@ export class AppComponent {
 
 
 
-
-  // async _createAccount(){
-  //   let params = {
-  //     "managed": "false",
-  //     "country": "US",
-  //     "email": "ohtsu@example.com",
-  //   };
-  //   try {
-  //     let res = await this.createCommon(this._stripe.ACCOUNTS,params);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-  // async _retrieveAccount(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.ACCOUNTS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _updateAccount(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   let params = {"support_phone": "555-867-5309"};
-  //   try {
-  //     let res = await this.updateCommon(this._stripe.ACCOUNTS,id,params);
-  //     console.log("test Ok ---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _deleteAccount(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   try {
-  //     let res = await this.deleteCommon(this._stripe.ACCOUNTS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _rejectAccount(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   try {
-  //     let res = await this.rejectCommon(this._stripe.ACCOUNTS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _listAccounts(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.ACCOUNTS,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
 // __ Test Transfer ____
 
   async _createTransfer(){
@@ -828,59 +548,6 @@ export class AppComponent {
     this.transferOutput = await this.tstListCommon(this._stripe.TRANSFERS,this.transferParam); 
   }
 
-
-
-  // async _createTransfer(){
-  //   let params = {
-  //     "amount": "400",
-  //     "currency": "jpy",
-  //     "destination": "acct_19wT1PEIQsYRQY1x",
-  //     "description": "Transfer to ohtsu@example.com",
-  //   };
-  //   try {
-  //     let res = await this.createCommon(this._stripe.TRANSFERS,params);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-  // async _retrieveTransfer(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.TRANSFERS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _updateTransfer(){
-  //   let id = "acct_19wT1PEIQsYRQY1x";
-  //   let params = {"support_phone": "555-867-5309"};
-  //   try {
-  //     let res = await this.updateCommon(this._stripe.TRANSFERS,id,params);
-  //     console.log("test Ok ---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-  // async _listTransfers(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.TRANSFERS,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
 
 
 
@@ -912,71 +579,7 @@ export class AppComponent {
     this.skuOutput = await this.tstListCommon(this._stripe.SKUS,this.skuParam); 
   }
   
-  // async _createSku(){
-  //   let params = {
-  //     "attributes[size]": "Medium",
-  //     "attributes[gender]": "Unisex",
-  //     "price": "1500",
-  //     "currency": "jpy",
-  //     "inventory[type]": "finite",
-  //     "inventory[quantity]": "500",
-  //     "product": "prod_AGvJ9sQWjUIJll",
-  //   };
-  // //   try {
-  //     let res = await this.createCommon(this._stripe.SKUS,params);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-
-  // async _retrieveSku(){
-  //   let id = "sku_AGvaYehC5QHDHK";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.SKUS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _updateSku(){
-  //   let id = "sku_AGvaYehC5QHDHK";
-  //   let params = {"metadata[order_id]": "6735700"};
-  //   try {
-  //     let res = await this.updateCommon(this._stripe.SKUS,id,params);
-  //     console.log("test Ok ---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _deleteSku(){
-  //   let id = "sku_AGvaYehC5QHDHK";
-  //   try {
-  //     let res = await this.deleteCommon(this._stripe.SKUS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _listSkus(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listCommon(this._stripe.SKUS,params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
+  
 
 
 // __ Test Product ____
@@ -1013,65 +616,6 @@ export class AppComponent {
 
 
 
-  // async _createProduct(){
-  //   let params = {
-  //     "name": "T-shirt",
-  //     "description": "Comfortable cotton t-shirt",
-  //   };
-  //   // let urlEncodedStr = this.addSameNameParams(params,"attributes[]",["size","gender"]);
-  //   try {
-  //     let res = await this.createCommon(this._stripe.PRODUCTS,params,"attributes[]",["size","gender"]);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _retrieveProduct(){
-  //   let id = "prod_AGe3cnZmmtTtkv";
-  //   try {
-  //     let res = await this.retrieveProduct(id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _updateProduct(){
-  //   let id = "prod_AGe3cnZmmtTtkv";
-  //   let params = {"description": "6735"};
-  //   try {
-  //     let res = await this.updateProduct(id,params);
-  //     console.log("test Ok ---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _deleteProduct(){
-  //   let id = "prod_AGe3cnZmmtTtkv";
-  //   try {
-  //     let res = await this.deleteProduct(id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _listProducts(){
-  //   let params = {"limit": 5};
-  //   try {
-  //     let res = await this.listProducts(params);
-  //     console.log("res---",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
 
 
 // __ Test Event ____
@@ -1086,28 +630,7 @@ export class AppComponent {
     this.eventOutput = await this.tstListCommon(this._stripe.EVENTS,this.eventParam); 
   }
 
-  // async _listEvents(){
-  //   let params = {"limit": 5};
-  //   try{
-  //     let res = await this.listCommon(this._stripe.EVENTS,params);
-  //     console.log(res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
-  // async _retrieveEvent(){
-  //   let id = "evt_19wNtHGhaJuqPLqdBpjDJDKT";
-  //   try {
-  //     let res = await this.retrieveCommon(this._stripe.EVENTS,id);
-  //     console.log("test Ok   -----",res);
-  //   }
-  //   catch(e){
-  //     console.log("test error-----",e);
-  //   }
-  // }
-
+  
 
 
 // __ Test Refund ____
@@ -1132,28 +655,6 @@ export class AppComponent {
     this.refundOutput = await this.tstListCommon(this._stripe.REFUNDS,this.refundParam); 
   }
 
-  // _createRefund(){
-  //   let params = {"charge": "ch_19vGSnGhaJuqPLqdJvC0aZkf" };
-    
-  //   return this.createCommon(this._stripe.REFUNDS,params);
-  // }
-
-  // _retrieveRefund(){
-  //   let id = "re_19vIjbGhaJuqPLqdZUAz9Wpj";
-  //   let res = this.retrieveRefund(id);
-  // }
-
-  // _updateRefund(){
-  //   let params = {"reason": "requested_by_customer" };
-  //   let id = "re_19vIjbGhaJuqPLqdZUAz9Wpj";
-  //   let res = this.updateRefund(id,params);
-  // }
-
-  // _listRefunds(){
-  //   let params = {"limit": 5};
-  //   let res = this.listRefunds(params);
-  //   console.log(res);
-  // }
 
 
 // __ Test Token ____
