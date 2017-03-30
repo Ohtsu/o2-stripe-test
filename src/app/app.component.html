@@ -453,14 +453,15 @@
             <div class="row">
               <div class="col-xs-2">
                 <h4 class="intabpage"> Command </h4>
+                <button class="intabpage btn btn-bloc btn-primary" (click)= "_createFileUpload()" >Upload</button>
                 <button class="intabpage btn btn-bloc btn-primary" (click)= "_retrieveFileUpload()" >Retrieve</button>
                 <button class="intabpage btn btn-bloc btn-primary" (click)= "_listFileUploads()" >List</button>
               </div>
               <div class="col-xs-5">
                 <h4 class="intabpage"> Input </h4>
                 <input class="intabpage"  [(ngModel)]= "fileUploadId" placeholder="upload file" size="30">
-                <!--<input type="file" id="btnUpload" style="display:none;"  (change)="onBtnUploadChange($event)" />
-                <button type="button" (click) = "onBtnBrowseClick($event)">Select File</button>-->
+                <input type="file" id="btnUpload" style="display:none;"  (change)="onBtnUploadChange($event)" />
+                <button type="button" (click) = "onBtnBrowseClick($event)">Select File</button>
                 <textarea class="intabpage" [(ngModel)]="fileUploadParam" placeholder="Param (Json Format)" cols="31" rows="13">
                 </textarea>
               </div>

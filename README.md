@@ -51,6 +51,19 @@ $ cd o2-stripe-test
 $ npm install 
 ```
 
+### If you have an error as follows
+
+```bash
++-- @angular/cli@1.0.0-rc.1
+`-- UNMET PEER DEPENDENCY typescript@2.0.10
+```
+
+Install @angular/cli globally
+
+```bash
+$ npm install -g @angular/cli 
+$ npm install
+```
 
 
 #### Modify stripe-auth.ts

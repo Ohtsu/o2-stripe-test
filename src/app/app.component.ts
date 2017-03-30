@@ -81,6 +81,7 @@ export class AppComponent {
   fileUploadId:any;
   fileUploadParam:any;
   fileUploadOutput:any;
+  fileUploadFile:any;
 
 
   cardToken: any;
@@ -151,7 +152,23 @@ export class AppComponent {
 
   }
 
+    onBtnBrowseClick(event:any){
+         let uploadButton = document.getElementById("btnUpload");
+         uploadButton.click();
+     }
 
+    async onBtnUploadChange(event:any){
+         let file = event.srcElement.files[0];
+         console.log("file---------",file);
+         this.fileUploadId = file.name;
+         this.fileUploadFile = file;
+        //  let uploader = document.getElementById("btnUpload");
+        // // //  console.log("targetFile------------",targetFile);
+        //  let targetFile = "C:/Users/ohtsu/Pictures/0000090_300.jpg";
+        //  console.log("targetFile------------",targetFile);
+        //  let res = await this.sendFile(this._stripe.FILES, targetFile,"dispute_evidence");
+        //  console.log("upload res-----",res);
+     }
 
 
 // test functions =========================
@@ -679,7 +696,18 @@ export class AppComponent {
 // __ Test File Uploads ____
 
   async _createFileUpload(){
-    this.fileUploadOutput = await this.tstCreateCommon(this._stripe.FILES,this.fileUploadParam); 
+    // this.fileUploadOutput = await this.tstCreateCommon(this._stripe.FILES,this.fileUploadParam); 
+    if (this.fileUploadFile == null ){
+      console.log("File is not set");
+      return;
+    }
+    // let uploadButton = document.getElementById("btnUpload");
+    let targetFile = this.fileUploadFile;
+    console.log("targetFile------------",targetFile);
+    let res = await this.sendFile(this._stripe.FILES, targetFile,"identity_document");
+    console.log("upload res-----",res);
+    
+    // console.log("_createFileUpload");    
   }
 
 
@@ -757,7 +785,7 @@ export class AppComponent {
   private sendFile(url: String, file: File, purpose: string): Promise<Response>{
     let formData: FormData = new FormData();
     formData.append('purpose',purpose);
-    formData.append('file',file,file.name);
+    formData.append('file',file.name);
     let headers = new Headers()
     headers = this.postStripeFileHeaders();
     let options = new RequestOptions({ headers: headers });
@@ -767,6 +795,20 @@ export class AppComponent {
                 .catch(this.handleError);
     
   }
+
+  // private sendFile(url: String, fileLocalPath: string, purpose: string): Promise<Response>{
+  //   let formData: FormData = new FormData();
+  //   formData.append('file',fileLocalPath);
+  //   formData.append('purpose',purpose);
+  //   let headers = new Headers()
+  //   headers = this.postStripeFileHeaders();
+  //   let options = new RequestOptions({ headers: headers });
+  //   return this._http.post(url, formData ,options)
+  //               .toPromise()
+  //               .then(this.extractData)
+  //               .catch(this.handleError);
+    
+  // }
 
 
   private extractData(res:Response) {
@@ -802,7 +844,7 @@ export class AppComponent {
 
 	private postStripeFileHeaders(): Headers{
 		let headers = new Headers();
-		let access_token = this._stripeTestSecretKey;
+		let access_token = this._stripeTestPublicKey //._stripeTestSecretKey;
     if (access_token) {
         headers.append('Accept','application/json');
         headers.append('Content-Type','multipart/form-data');
