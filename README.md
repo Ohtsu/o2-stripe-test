@@ -191,6 +191,11 @@ You will find the newly registered customer's id.
 - "Taking Stripe Payments with Angular 2 and ASP.NET Core",2017/1/12, by Carl Rippon
 <http://www.carlrippon.com/?p=645>
 
+- "Angular5 Custom Library: The definitive, step-by-step guide", 
+<https://www.udemy.com/draft/1461368/learn/v4/content>
+
+
+
 
 
 ## Change Log
